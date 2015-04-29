@@ -1,0 +1,52 @@
+---
+# file: hands-on/demo3/demo3.yml
+
+- name: demo3 play
+  hosts: localhost
+
+
+  vars:
+    name: 'Big Bird'
+
+
+  pre_tasks:
+    - name: walk to the door
+      debug:
+        msg='You walk towards the door...'
+
+
+  roles:
+    - scenery
+    - weather
+    - state-of-mind
+
+
+  tasks:
+    - name: knock on door
+      debug:
+        msg='You knock on the door... Knock, knock!'
+      notify:
+        - handler string
+
+    - name: wait at the doorstep
+      debug:
+        msg='...'
+
+    - name: knock on door again
+      debug:
+        msg='KNOCK, KNOCK!!!'
+      changed_when: yes
+      notify:
+        - handler string
+
+
+  handlers:
+    - name: handler string
+      debug:
+        msg="(from the other side of the door) Who's there?"
+
+
+  post_tasks:
+    - name: echo who you are
+      debug:
+        msg="I am {{ name }}!"

@@ -1,0 +1,4 @@
+---
+# file: hands-on/demo4/group_vars/all.yml
+
+group_all_var: "group_all_var_value"

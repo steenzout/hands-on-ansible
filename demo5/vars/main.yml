@@ -1,0 +1,4 @@
+---
+# file: hands-on/demo5/vars/main.yml
+
+secret: "{{ vault_secret }}"

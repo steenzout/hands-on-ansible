@@ -1,0 +1,6 @@
+---
+# file: hands-on/scenery/tasks/main.yml
+
+- name: describe scenery
+  debug:
+    msg="It's a dark windy night. It is full moon but you can't see almost anything because there are lots of tress around the house."

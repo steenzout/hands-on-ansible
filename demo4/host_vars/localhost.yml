@@ -1,0 +1,4 @@
+---
+# file: hands-on/demo4/host_vars/localhost.yml
+
+demo4_host_var: "demo4_host_var_value"

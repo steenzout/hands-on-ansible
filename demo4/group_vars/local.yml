@@ -1,0 +1,4 @@
+---
+# file: hands-on/demo4/group_vars/main.yml
+
+group_local_var: "group_local_var_value"

@@ -1,0 +1,200 @@
+---
+# file: hands-on/demo3.yml
+
+- name: demo4 play1
+  hosts: local
+  # specify host_group
+
+  vars:
+    demo4_play1_var: 'demo_var3_value_set_on_play'
+
+  pre_tasks:
+
+    - name: echo variable set on play1
+      debug:
+        msg="demo4_play1_var={{ demo4_play1_var }}"
+
+    - name: echo variable set on inventory
+      debug:
+        msg="inventory_var={{ inventory_var }}"
+
+    # this only works for roles
+    - name: echo variable set on defaults/main.yml
+      debug:
+        msg="demo4_defaults_var={{ demo4_defaults_var }}"
+      when: demo4_defaults_var is defined
+
+    - name: echo variable set on vars/main.yml
+      debug:
+        msg="demo4_defaults_var={{ demo4_defaults_var }}"
+      when: demo4_defaults_var is defined
+
+    - name: echo variable set on group_vars/all.yml
+      debug:
+        msg="group_all_var={{ group_all_var }}"
+      when: group_all_var is defined
+
+    - name: echo variable set on group_vars/<group>.yml
+      debug:
+        msg="group_local_var={{ group_local_var }}"
+      when: group_local_var is defined
+
+    - name: echo variable set on host_vars/<host>.yml
+      debug:
+        msg="demo4_host_var={{ demo4_host_var }}"
+      when: demo4_host_var is defined
+
+    - name: (on the play1.pre_tasks) echo variable set on provisioning/defaults/main.yml
+      debug:
+        msg="provisioning_role_defaults_var={{ provisioning_role_defaults_var }}"
+      when: provisioning_role_defaults_var is defined
+
+    - name: (on the play1.pre_tasks) echo variable passed as input to provisioning role
+      debug:
+        msg="provisioning_role_input_var={{ provisioning_role_input_var }}"
+      when: provisioning_role_input_var is defined
+
+    - name: (on the play1.pre_tasks) echo registered variable set on provisioning/tasks/main.yml
+      debug:
+        msg="provisioning_output_var={{ provisioning_output_var }}"
+      when: provisioning_output_var is defined
+
+    - name: (on the play1.pre_tasks) echo fact set on provisioning/tasks/main.yml
+      debug:
+        msg="provisioning_fact_var={{ provisioning_fact_var }}"
+      when: provisioning_fact_var is defined
+
+
+  roles:
+    - { role: provisioning,
+        provisioning_role_input_var: 'provisioning_role_input_var_value' }
+
+
+  tasks:
+    - name: (on the play1.tasks) echo variable set on provisioning/defaults directory
+      debug:
+        msg="provisioning_role_defaults_var={{ provisioning_role_defaults_var }}"
+      when: provisioning_role_defaults_var is defined
+
+    - name: (on the play2.tasks) echo variable passed as input to provisioning role
+      debug:
+        msg="provisioning_role_input_var={{ provisioning_role_input_var }}"
+      when: provisioning_role_input_var is defined
+
+    - name: (on the play1.tasks) echo registered variable set on provisioning/tasks/main.yml
+      debug:
+        msg="provisioning_output_var={{ provisioning_output_var }}"
+      when: provisioning_output_var is defined
+
+    - name: (on the play1.tasks) echo fact set on provisioning/tasks/main.yml
+      debug:
+        msg="provisioning_fact_var={{ provisioning_fact_var }}"
+      when: provisioning_fact_var is defined
+
+
+- name: demo4 play2
+  hosts: localhost
+  # specify single host
+
+  tasks:
+
+    - name: echo variable set on play1
+      debug:
+        msg="demo4_play1_var={{ demo4_play1_var }}"
+      when: demo4_play1_var is defined
+
+    - name: echo variable set on inventory
+      debug:
+        msg="inventory_var={{ inventory_var }}"
+      when: inventory_var is defined
+
+    - name: echo variable set on group_vars/all.yml
+      debug:
+        msg="group_all_var={{ group_all_var }}"
+      when: group_all_var is defined
+
+    - name: echo variable set on group_vars/<group>.yml
+      debug:
+        msg="group_local_var={{ group_local_var }}"
+      when: group_local_var is defined
+
+    - name: echo variable set on host_vars/<host>.yml
+      debug:
+        msg="demo4_host_var={{ demo4_host_var }}"
+      when: demo4_host_var is defined
+
+    - name: (on the play2.tasks) echo variable set on provisioning/defaults/main.yml
+      debug:
+        msg="provisioning_role_defaults_var={{ provisioning_role_defaults_var }}"
+      when: provisioning_role_defaults_var is defined
+
+    - name: (on the play2.tasks) echo variable passed as input to provisioning role
+      debug:
+        msg="provisioning_role_input_var={{ provisioning_role_input_var }}"
+      when: provisioning_role_defaults_var is defined
+
+    - name: (on the play2.tasks) echo registered variable set on provisioning/tasks/main.yml
+      debug:
+        msg="provisioning_output_var={{ provisioning_output_var }}"
+      when: provisioning_output_var is defined
+
+    - name: (on the play2.tasks) echo fact set on provisioning/tasks/main.yml
+      debug:
+        msg="provisioning_fact_var={{ provisioning_fact_var }}"
+      when: provisioning_fact_var is defined
+
+
+- name: demo4 play3
+  hosts: 127.0.0.1
+  # NOTE: not part of the inventory nor group
+
+  tasks:
+
+    - name: not part of the inventory
+      debug:
+        msg='This is the only thing I will print!'
+
+    - name: echo variable set on play1
+      debug:
+        msg="demo4_play1_var={{ demo4_play1_var }}"
+      when: demo4_play1_var is defined
+
+    - name: echo variable set on inventory
+      debug:
+        msg="inventory_var={{ inventory_var }}"
+      when: inventory_var is defined
+
+    - name: echo variable set on group_vars/all.yml
+      debug:
+        msg="group_all_var={{ group_all_var }}"
+      when: group_all_var is defined
+
+    - name: echo variable set on group_vars/<group>.yml
+      debug:
+        msg="group_local_var={{ group_local_var }}"
+      when: group_local_var is defined
+
+    - name: echo variable set on host_vars/<host>.yml
+      debug:
+        msg="demo4_host_var={{ demo4_host_var }}"
+      when: demo4_host_var is defined
+
+    - name: (on the play3.tasks) echo variable set on provisioning/defaults/main.yml
+      debug:
+        msg="provisioning_role_defaults_var={{ provisioning_role_defaults_var }}"
+      when: provisioning_role_defaults_var is defined
+
+    - name: (on the play3.tasks) echo variable passed as input to provisioning role
+      debug:
+        msg="provisioning_role_input_var={{ provisioning_role_input_var }}"
+      when: provisioning_role_defaults_var is defined
+
+    - name: (on the play3.tasks) echo registered variable set on provisioning/tasks/main.yml
+      debug:
+        msg="provisioning_output_var={{ provisioning_output_var }}"
+      when: provisioning_output_var is defined
+
+    - name: (on the play3.tasks) echo fact set on provisioning/tasks/main.yml
+      debug:
+        msg="provisioning_fact_var={{ provisioning_fact_var }}"
+      when: provisioning_fact_var is defined

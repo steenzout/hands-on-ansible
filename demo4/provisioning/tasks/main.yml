@@ -1,0 +1,32 @@
+---
+# file: provisioning/tasks/main.yml
+#
+# input variables
+# - var1
+#
+# output variables
+# - register...
+#
+# output host variables
+# - set_fact...
+#
+
+- name: (on the task) echo variable set on role/defaults directory
+  debug:
+    msg="provisioning_role_defaults_var={{ provisioning_role_defaults_var }}"
+
+- name: (on the task) echo variable set on role/defaults directory
+  debug:
+    msg="provisioning_role_input_var={{ provisioning_role_input_var }}"
+
+- name: (on the task) echo variable set on the play
+  debug:
+    msg="provisioning_role_input_var={{ demo4_play1_var }}"
+
+- name: register output variable
+  command: 'echo 1'
+  register: provisioning_output_var
+
+- name: set fact on host
+  set_fact:
+    provisioning_fact_var: 'provisioning_fact_var_value'

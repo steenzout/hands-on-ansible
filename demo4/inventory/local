@@ -1,0 +1,16 @@
+[root:children]
+local
+alias
+
+[local]
+localhost
+
+[alias]
+192.168.0.1
+
+[mydatabaseserver]
+192.168.0.1
+
+
+[local:vars]
+inventory_var=inventory_var_value

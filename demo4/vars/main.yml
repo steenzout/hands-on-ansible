@@ -1,0 +1,4 @@
+---
+# file: hands-on/demo4/host_vars/localhost.yml
+
+demo4_var_var: "demo4_play1_var_value_set_on_vars"

@@ -1,0 +1,6 @@
+---
+# file: state_of_mind/tasks/main.yml
+
+- name: describe state of mind
+  debug:
+    msg="Starting to get scared!"

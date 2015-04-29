@@ -1,0 +1,6 @@
+---
+# file: hands-on/weather/tasks/main.yml
+
+- name: describe weather
+  debug:
+    msg="Pouring rain!!! Yes, pouring! P-O-U-R-I-N-G!"

@@ -1,0 +1,6 @@
+---
+# file: provisioning/defaults/main.yml
+
+provisioning_role_defaults_var: 'provisioning_role_defaults_var_value'
+# provisioning_role_input_var1 MANDATORY!
+# provisioning_role_input_var2 optional!

@@ -1,0 +1,4 @@
+---
+# file: hands-on/demo4/defaults/main.yml
+
+demo4_defaults_var: "demo4_defaults_var_value"

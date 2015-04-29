@@ -1,0 +1,17 @@
+---
+# file: hands-on/demo3.yml
+
+- name: demo5 play
+  hosts: localhost
+
+  pre_tasks:
+    - name: include vault file
+      include_vars: 'vars/vault.yml'
+
+    - name: include variable file
+      include_vars: 'vars/main.yml'
+
+  tasks:
+    - name: echo secret
+      debug:
+        msg="{{ secret }}"

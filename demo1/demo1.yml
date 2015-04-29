@@ -1,0 +1,40 @@
+---
+# file: hands-on/demo1/demo1.yml
+
+- name: demo1 play
+  hosts: localhost
+
+  vars:
+    name: 'Big Bird'
+
+
+  pre_tasks:
+    - name: walk to the door
+      debug:
+        msg='You walk towards the door...'
+
+
+  tasks:
+    - name: knock on door
+      debug:
+        msg='You knock on the door... Knock, knock!'
+
+    - name: wait at the doorstep
+      debug:
+        msg='...'
+
+    - name: knock on door again
+      debug:
+        msg='KNOCK, KNOCK!!!'
+
+
+  handlers:
+    - name: handler string
+      debug:
+        msg="You hear someone on the other side of the door say: Who's there?"
+
+
+  post_tasks:
+    - name: echo who you are
+      debug:
+        msg="I am {{ name }}!"
